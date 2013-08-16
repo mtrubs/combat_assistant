@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Combat Assistant</string>
 
+    <!-- general buttons -->
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
@@ -9,13 +10,20 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
-    <string name="playerClass_list">Class List</string>
-    <string name="playerClass_form">Class Form</string>
-    <string name="playerClass_name">Name:</string>
-    <string name="playerClass_name_hint">Class Name</string>
-    <string name="playerClass_delete_title">Confirm Delete</string>
-    <string name="playerClass_delete_message">Are you sure you want to delete this class?</string>
-    <string name="playerClass_create">-- Add New Class --</string>
+    <!-- Ability -->
+    <string name="ability_list">Abilities</string>
+    <string name="ability_list_assign">-- Assign Ability --</string>
 
-    <string name="ability_assign">-- Assign Ability --</string>
+    <!-- Player Class -->
+    <string name="playerClass_form">Class Form</string>
+    <string name="playerClass_form_delete_message">Are you sure you want to delete this class?</string>
+    <string name="playerClass_form_delete_title">Confirm Delete</string>
+    <string name="playerClass_form_name">Name:</string>
+    <string name="playerClass_form_name_hint">Class Name</string>
+    <string name="playerClass_list">Classes</string>
+    <string name="playerClass_list_create">-- Add New Class --</string>
+
+    <!-- Race -->
+    <string name="race_list">Races</string>
+
 </resources>

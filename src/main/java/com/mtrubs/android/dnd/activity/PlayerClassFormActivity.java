@@ -54,7 +54,7 @@ public class PlayerClassFormActivity extends Activity implements PlayerClassForm
             this.abilityService = new AbilityDataSourceService(this);
 
             AbilityList abilityList = (AbilityList) getFragmentManager().findFragmentById(R.id.ability_list);
-            this.abilities.add(abilityList.createPlaceholder(getResources().getString(R.string.ability_assign)));
+            this.abilities.add(abilityList.createPlaceholder(getResources().getString(R.string.ability_list_assign)));
             abilityList.updateAbilities(this.abilities);
 
             // check if this is an edit vs create
@@ -109,8 +109,8 @@ public class PlayerClassFormActivity extends Activity implements PlayerClassForm
     @Override
     public void delete(View view) {
         AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
-        confirmation.setTitle(getResources().getString(R.string.playerClass_delete_title));
-        confirmation.setMessage(getResources().getString(R.string.playerClass_delete_message));
+        confirmation.setTitle(getResources().getString(R.string.playerClass_form_delete_title));
+        confirmation.setMessage(getResources().getString(R.string.playerClass_form_delete_message));
         confirmation.setIcon(getResources().getDrawable(android.R.drawable.ic_dialog_alert));
         confirmation.setPositiveButton(
                 getResources().getString(R.string.yes),

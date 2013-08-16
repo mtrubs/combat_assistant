@@ -27,7 +27,7 @@ public class PlayerClassListActivity extends ListActivity implements PlayerClass
     private List<PlayerClass> playerClasses = PlayerClassCreator.getAll();
     private PlayerClassService playerClassService;
 
-    private static final String TAG = PlayerClassFormActivity.class.getCanonicalName();
+    private static final String TAG = PlayerClassListActivity.class.getCanonicalName();
 
     @Override
     public void onCreate(Bundle savedInstance) {
@@ -39,7 +39,7 @@ public class PlayerClassListActivity extends ListActivity implements PlayerClass
 
             ListView listView = (ListView) findViewById(android.R.id.list);
             PlayerClassAdapter adapter = new PlayerClassAdapter(this, R.layout.player_class_list_item);
-            this.playerClasses.add(PlayerClassCreator.create(-1L, getResources().getString(R.string.playerClass_create)));
+            this.playerClasses.add(PlayerClassCreator.create(-1L, getResources().getString(R.string.playerClass_list_create)));
             adapter.updateEntities(this.playerClasses);
             listView.setAdapter(adapter);
         } catch (Exception e) {
