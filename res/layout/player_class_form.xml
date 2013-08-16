@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_height="fill_parent"
+             android:layout_width="fill_parent">
+
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+        <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/playerClass_name"
+                android:paddingRight="15dp"
+                android:textSize="25sp"/>
+
+        <EditText
+                android:id="@+id/playerClass_name"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/playerClass_name_hint"
+                android:textSize="25sp"/>
+    </TableRow>
+
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+        <fragment
+                android:layout_span="4"
+                android:id="@+id/ability_list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                class="com.mtrubs.android.dnd.fragment.AbilityListFragment"/>
+    </TableRow>
+
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+        <Button
+                android:id="@+id/delete"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/delete"
+                android:onClick="delete"
+                android:textSize="25sp"
+                android:padding="12dp"/>
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+        <Button
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/cancel"
+                android:onClick="cancel"
+                android:textSize="25sp"
+                android:padding="12dp"
+                android:layout_marginRight="15dp"/>
+
+        <Button
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/save"
+                android:onClick="save"
+                android:textSize="25sp"
+                android:padding="12dp"/>
+
+    </TableRow>
+</TableLayout>
