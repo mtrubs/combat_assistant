@@ -1,7 +1,5 @@
 package com.mtrubs.android.dnd.activity;
 
-import android.view.View;
-
 /**
  * This represents the interface between the view and the activity for the
  * player class list.
@@ -12,5 +10,4 @@ import android.view.View;
  */
 public interface PlayerClassList {
 
-    void addEntity(View view);
 }

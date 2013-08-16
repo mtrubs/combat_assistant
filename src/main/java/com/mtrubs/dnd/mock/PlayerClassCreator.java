@@ -27,30 +27,30 @@ public class PlayerClassCreator {
     static {
         ALL = new ArrayList<PlayerClass>();
         // PHB
-        ALL.add(create(1, "Cleric"));
-        ALL.add(create(2, "Fighter"));
-        ALL.add(create(3, "Paladin"));
-        ALL.add(create(4, "Ranger"));
-        ALL.add(create(5, "Rogue"));
-        ALL.add(create(6, "Warlock"));
-        ALL.add(create(7, "Warlord"));
-        ALL.add(create(8, "Wizard"));
+        ALL.add(create(1L, "Cleric"));
+        ALL.add(create(2L, "Fighter"));
+        ALL.add(create(3L, "Paladin"));
+        ALL.add(create(4L, "Ranger"));
+        ALL.add(create(5L, "Rogue"));
+        ALL.add(create(6L, "Warlock"));
+        ALL.add(create(7L, "Warlord"));
+        ALL.add(create(8L, "Wizard"));
         // PHB2
-        ALL.add(create(9, "Avenger"));
-        ALL.add(create(10, "Barbarian"));
-        ALL.add(create(11, "Bard"));
-        ALL.add(create(12, "Druid"));
-        ALL.add(create(13, "Invoker"));
-        ALL.add(create(14, "Shaman"));
-        ALL.add(create(15, "Sorcerer"));
-        ALL.add(create(16, "Warden"));
+        ALL.add(create(9L, "Avenger"));
+        ALL.add(create(10L, "Barbarian"));
+        ALL.add(create(11L, "Bard"));
+        ALL.add(create(12L, "Druid"));
+        ALL.add(create(13L, "Invoker"));
+        ALL.add(create(14L, "Shaman"));
+        ALL.add(create(15L, "Sorcerer"));
+        ALL.add(create(16L, "Warden"));
         // PHB 3
-        ALL.add(create(17, "Ardent"));
-        ALL.add(create(18, "Battlemind"));
-        ALL.add(create(19, "Monk"));
-        ALL.add(create(20, "Psion"));
-        ALL.add(create(21, "Runepriest"));
-        ALL.add(create(22, "Seeker"));
+        ALL.add(create(17L, "Ardent"));
+        ALL.add(create(18L, "Battlemind"));
+        ALL.add(create(19L, "Monk"));
+        ALL.add(create(20L, "Psion"));
+        ALL.add(create(21L, "Runepriest"));
+        ALL.add(create(22L, "Seeker"));
 
         Collections.sort(ALL, COMPARATOR);
     }
@@ -59,7 +59,7 @@ public class PlayerClassCreator {
         return new ArrayList<PlayerClass>(ALL);
     }
 
-    public static PlayerClass create(int id, String name) {
+    public static PlayerClass create(long id, String name) {
         PlayerClass playerClass = new PlayerClass();
         ReflectionUtils.setProperty(playerClass, "name", name);
         ReflectionUtils.setProperty(playerClass, "id", id);

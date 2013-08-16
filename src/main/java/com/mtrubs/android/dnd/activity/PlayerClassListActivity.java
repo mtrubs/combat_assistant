@@ -39,6 +39,7 @@ public class PlayerClassListActivity extends ListActivity implements PlayerClass
 
             ListView listView = (ListView) findViewById(android.R.id.list);
             PlayerClassAdapter adapter = new PlayerClassAdapter(this, R.layout.player_class_list_item);
+            this.playerClasses.add(PlayerClassCreator.create(-1L, getResources().getString(R.string.playerClass_create)));
             adapter.updateEntities(this.playerClasses);
             listView.setAdapter(adapter);
         } catch (Exception e) {
@@ -55,11 +56,8 @@ public class PlayerClassListActivity extends ListActivity implements PlayerClass
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-    }
-
-    @Override
-    public void addEntity(View view) {
         Intent intent = new Intent(this, PlayerClassFormActivity.class);
+        intent.putExtra(PlayerClassFormActivity.MESSAGE_ID, id);
         startActivity(intent);
     }
 }

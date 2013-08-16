@@ -15,18 +15,18 @@ public class RaceCreator {
 
     public static Collection<Race> getAll() {
         Collection<Race> results = new ArrayList<Race>();
-        results.add(create(1, "Dragonborn"));
-        results.add(create(2, "Dwarf"));
-        results.add(create(3, "Eladrin"));
-        results.add(create(4, "Elf"));
-        results.add(create(5, "Half-Elf"));
-        results.add(create(6, "Halfling"));
-        results.add(create(7, "Human"));
-        results.add(create(8, "Tiefling"));
+        results.add(create(1L, "Dragonborn"));
+        results.add(create(2L, "Dwarf"));
+        results.add(create(3L, "Eladrin"));
+        results.add(create(4L, "Elf"));
+        results.add(create(5L, "Half-Elf"));
+        results.add(create(6L, "Halfling"));
+        results.add(create(7L, "Human"));
+        results.add(create(8L, "Tiefling"));
         return results;
     }
 
-    public static Race create(int id, String name) {
+    public static Race create(long id, String name) {
         Race race = new Race();
         ReflectionUtils.setProperty(race, "name", name);
         ReflectionUtils.setProperty(race, "id", id);
