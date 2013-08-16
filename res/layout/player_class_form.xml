@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_height="fill_parent"
-             android:layout_width="fill_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_height="fill_parent"
+              android:layout_width="fill_parent"
+              android:baselineAligned="false"
+              android:orientation="vertical"
+              android:padding="12dp">
 
-    <TableRow
-            android:layout_width="fill_parent"
+    <TableLayout
             android:layout_height="wrap_content"
-            android:padding="15dp">
-
-        <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="@string/playerClass_name"
-                android:paddingRight="15dp"
-                android:textSize="25sp"/>
-
-        <EditText
-                android:id="@+id/playerClass_name"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/playerClass_name_hint"
-                android:textSize="25sp"/>
-    </TableRow>
-
-    <TableRow
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp">
+            android:layout_marginBottom="12dp">
 
-        <fragment
-                android:layout_span="4"
-                android:id="@+id/ability_list"
+        <TableRow
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                class="com.mtrubs.android.dnd.fragment.AbilityListFragment"/>
-    </TableRow>
+                android:layout_height="fill_parent">
 
-    <TableRow
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/playerClass_name"
+                    android:textSize="25sp"
+                    android:paddingRight="12dp"/>
+
+            <EditText
+                    android:id="@+id/playerClass_name"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/playerClass_name_hint"
+                    android:textSize="25sp"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <fragment
+            android:id="@+id/ability_list"
             android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="12dp"
+            class="com.mtrubs.android.dnd.fragment.AbilityListFragment"/>
+
+    <LinearLayout
             android:layout_height="wrap_content"
-            android:padding="15dp">
+            android:layout_width="fill_parent"
+            android:orientation="horizontal">
 
         <Button
                 android:id="@+id/delete"
@@ -48,10 +52,10 @@
                 android:layout_width="wrap_content"
                 android:text="@string/delete"
                 android:onClick="delete"
-                android:textSize="25sp"
-                android:padding="12dp"/>
+                android:textSize="25sp"/>
 
         <TextView
+                android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="1"/>
 
@@ -60,17 +64,14 @@
                 android:layout_width="wrap_content"
                 android:text="@string/cancel"
                 android:onClick="cancel"
-                android:textSize="25sp"
-                android:padding="12dp"
-                android:layout_marginRight="15dp"/>
+                android:textSize="25sp"/>
 
         <Button
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="@string/save"
                 android:onClick="save"
-                android:textSize="25sp"
-                android:padding="12dp"/>
+                android:textSize="25sp"/>
 
-    </TableRow>
-</TableLayout>
+    </LinearLayout>
+</LinearLayout>
