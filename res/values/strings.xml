@@ -3,7 +3,6 @@
     <string name="app_name">Combat Assistant</string>
 
     <!-- general buttons -->
-    <string name="add">Add</string>
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
     <string name="save">Save</string>
@@ -30,7 +29,6 @@
     <string name="ability_type_daily_feature">Daily (F)</string>
 
     <!-- Player Class -->
-    <string name="playerClass_form">Class Form</string>
     <string name="playerClass_form_delete_message">Are you sure you want to delete this class?</string>
     <string name="playerClass_form_delete_title">Confirm Delete</string>
     <string name="playerClass_form_name">Name:</string>

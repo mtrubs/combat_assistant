@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 public class ArrayUtilsTest {
 
     @SuppressWarnings("UnusedDeclaration")
-    private Object[][] indexOfValues() {
+    private static Object[][] indexOfValues() {
         return new Object[][]{
                 {null, null, -1}, // null array
                 {new Object[]{1, 2, 4}, null, -1}, // null object

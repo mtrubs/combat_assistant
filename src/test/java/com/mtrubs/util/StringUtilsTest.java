@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 public class StringUtilsTest {
 
     @SuppressWarnings("UnusedDeclaration")
-    private Object[][] emptyValues() {
+    private static Object[][] emptyValues() {
         return new Object[][]{
                 {null, true},
                 {"", true},
@@ -35,7 +35,7 @@ public class StringUtilsTest {
     }
 
     @SuppressWarnings("UnusedDeclaration")
-    private Object[][] blankValues() {
+    private static Object[][] blankValues() {
         return new Object[][]{
                 {null, true},
                 {"", true},
@@ -51,7 +51,7 @@ public class StringUtilsTest {
     }
 
     @SuppressWarnings("UnusedDeclaration")
-    private Object[][] whitespaceValues() {
+    private static Object[][] whitespaceValues() {
         return new Object[][]{
                 {null, false},
                 {"", true},
@@ -73,7 +73,7 @@ public class StringUtilsTest {
             */
 
     @SuppressWarnings("UnusedDeclaration")
-    private Object[][] replaceValues() {
+    private static Object[][] replaceValues() {
         return new Object[][]{
                 {null, "x", "y", null},
                 {"", "x", "y", ""},
@@ -89,7 +89,7 @@ public class StringUtilsTest {
 
     @Test
     @Parameters(method = "replaceValues")
-    public void replace(String string, String replace, String with, String expected) {
-        assertEquals(expected, StringUtils.replace(string, replace, with));
+    public void replace(String text, String replace, String with, String expected) {
+        assertEquals(expected, StringUtils.replace(text, replace, with));
     }
 }

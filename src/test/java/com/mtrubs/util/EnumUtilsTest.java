@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 public class EnumUtilsTest {
 
     @SuppressWarnings("UnusedDeclaration")
-    private Object[][] valueOfValues() {
+    private static Object[][] valueOfValues() {
         return new Object[][] {
                 {Type1.Cat, Type1.class, "Cat", null},
                 {Type1.Dog, Type1.class, "Dog", null},

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import com.mtrubs.android.dnd.R;
 import com.mtrubs.android.dnd.widget.AbilityAdapter;
@@ -24,6 +25,7 @@ public class AbilityListFragment extends ListFragment implements AbilityList {
 
     private AbilityListListener listener;
 
+    @SuppressWarnings("RefusedBequest")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.ability_list, container);
@@ -33,7 +35,7 @@ public class AbilityListFragment extends ListFragment implements AbilityList {
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
 
-        AbilityAdapter adapter = new AbilityAdapter(getActivity(), R.layout.ability_list_item);
+        ListAdapter adapter = new AbilityAdapter(getActivity());
         setListAdapter(adapter);
     }
 

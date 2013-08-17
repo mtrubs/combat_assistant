@@ -15,8 +15,8 @@ import com.mtrubs.dnd.domain.Ability;
  */
 public class AbilityAdapter extends EntityListAdaptor<Ability> {
 
-    public AbilityAdapter(Context context, int resource) {
-        super(context, resource);
+    public AbilityAdapter(Context context) {
+        super(context, R.layout.ability_list_item);
     }
 
     @Override

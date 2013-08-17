@@ -13,5 +13,5 @@ public enum AbilityType {
     AtWillFeature,
     EncounterFeature,
     DailyFeature,
-    None;
+    None
 }

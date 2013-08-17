@@ -20,7 +20,7 @@ import static org.junit.Assert.fail;
 public class ReflectionUtilsTest {
 
     @SuppressWarnings("UnusedDeclaration")
-    private Object[][] getPropertyValues() {
+    private static Object[][] getPropertyValues() {
         return new Object[][]{
                 {new ClassA(), "a", Integer.class, 1, null}, // class access
                 {new ClassB(), "a", Integer.class, 1, null}, // super class access
@@ -29,7 +29,7 @@ public class ReflectionUtilsTest {
                 {null, "b", Integer.class, 0, "Object is null"}, // null object
                 {new ClassB(), "x", Integer.class, 1, null}, // static field
                 {new ClassB(), "y", Integer.class, 1, null}, // final field
-                {new ClassB(), "z", Integer.class, 1, null}, // static final field
+                {new ClassB(), "Z", Integer.class, 1, null}, // static final field
                 {new ClassA(), "a", String.class, 0, "Cannot cast java.lang.Integer to java.lang.String"}, // wrong field type
                 {new ClassA(), null, Integer.class, 0, "Field name is null"}, // null field name
         };
@@ -52,7 +52,7 @@ public class ReflectionUtilsTest {
     }
 
     @SuppressWarnings("UnusedDeclaration")
-    private Object[][] setPropertyValues() {
+    private static Object[][] setPropertyValues() {
         return new Object[][]{
                 {new ClassA(), "a", 2, null}, // class access
                 {new ClassB(), "a", 2, null}, // super class access
@@ -61,7 +61,7 @@ public class ReflectionUtilsTest {
                 {null, "b", 2, null}, // null object
                 {new ClassB(), "x", 2, null}, // static field
                 {new ClassB(), "y", 2, null}, // final field
-                {new ClassB(), "z", 0, "java.lang.IllegalAccessException: Can not set static final java.lang.Integer field com.mtrubs.util.ReflectionUtilsTest$ClassB.z to java.lang.Integer"}, // static final field
+                {new ClassB(), "Z", 0, "java.lang.IllegalAccessException: Can not set static final java.lang.Integer field com.mtrubs.util.ReflectionUtilsTest$ClassB.Z to java.lang.Integer"}, // static final field
                 {new ClassA(), null, 0, "Field name is null"}, // null field name
         };
     }
@@ -90,7 +90,7 @@ public class ReflectionUtilsTest {
             assertProperty(object, "b", exception == null && "b".equals(field) ? 2 : 1);
             assertProperty(object, "x", exception == null && "x".equals(field) ? 2 : 1);
             assertProperty(object, "y", exception == null && "y".equals(field) ? 2 : 1);
-            assertProperty(object, "z", exception == null && "z".equals(field) ? 2 : 1);
+            assertProperty(object, "Z", exception == null && "Z".equals(field) ? 2 : 1);
         }
     }
 
@@ -98,6 +98,7 @@ public class ReflectionUtilsTest {
         assertEquals(expected, (int) ReflectionUtils.getProperty(object, field, Integer.class));
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     private static class ClassA {
 
         private Integer a = 1;
@@ -106,12 +107,13 @@ public class ReflectionUtilsTest {
         }
     }
 
+    @SuppressWarnings({"UnusedDeclaration", "FieldMayBeStatic"})
     private static class ClassB extends ClassA {
 
         private Integer b = 1;
         private static Integer x = 1;
         private final Integer y = 1;
-        private static final Integer z = 1;
+        private static final Integer Z = 1;
 
         @Override
         public void reset() {

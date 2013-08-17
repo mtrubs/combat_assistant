@@ -15,8 +15,8 @@ import com.mtrubs.dnd.domain.PlayerClass;
  */
 public class PlayerClassAdapter extends EntityListAdaptor<PlayerClass> {
 
-    public PlayerClassAdapter(Context context, int resource) {
-        super(context, resource);
+    public PlayerClassAdapter(Context context) {
+        super(context, R.layout.player_class_list_item);
     }
 
     @Override

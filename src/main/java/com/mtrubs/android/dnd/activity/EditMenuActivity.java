@@ -27,7 +27,7 @@ public class EditMenuActivity extends Activity implements EditMenu {
         }
     }
 
-    private void logError(Exception e) {
+    private static void logError(Exception e) {
         if (BuildConfig.DEBUG) {
             Log.e(TAG, e.getClass().getCanonicalName() + "::" + e.getMessage());
         }

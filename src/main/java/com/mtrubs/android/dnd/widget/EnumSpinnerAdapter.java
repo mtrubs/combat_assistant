@@ -5,21 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.SpinnerAdapter;
 
 /**
  * User: Matthew
  * Date: 8/17/13
  * Time: 8:54 AM
  */
-public abstract class EnumSpinnerAdapter<T extends Enum<T>> extends BaseAdapter implements SpinnerAdapter {
+public abstract class EnumSpinnerAdapter<T extends Enum<T>> extends BaseAdapter {
 
     private final Context context;
     private final int resource;
     private final T[] items;
     private final int[] resourceIds;
 
-    public EnumSpinnerAdapter(Context context, int resource, T[] items, int[] resourceIds) {
+    protected EnumSpinnerAdapter(Context context, int resource, T[] items, int[] resourceIds) {
         this.context = context;
         this.resource = resource;
         this.items = items;
@@ -33,7 +32,7 @@ public abstract class EnumSpinnerAdapter<T extends Enum<T>> extends BaseAdapter 
 
     @Override
     public T getItem(int position) {
-        return items[position];
+        return this.items[position];
     }
 
     @Override
@@ -44,7 +43,7 @@ public abstract class EnumSpinnerAdapter<T extends Enum<T>> extends BaseAdapter 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(this.resource, parent, false);
+            convertView = LayoutInflater.from(this.context).inflate(this.resource, parent, false);
         }
         createView(position, convertView, parent);
         return convertView;

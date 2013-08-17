@@ -22,7 +22,7 @@ public abstract class EntityListAdaptor<T extends Entity> extends BaseAdapter {
 
     private List<T> entities = Collections.emptyList();
 
-    public EntityListAdaptor(Context context, int resource) {
+    protected EntityListAdaptor(Context context, int resource) {
         this.context = context;
         this.resource = resource;
     }
@@ -50,7 +50,7 @@ public abstract class EntityListAdaptor<T extends Entity> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(this.resource, parent, false);
+            convertView = LayoutInflater.from(this.context).inflate(this.resource, parent, false);
         }
         createView(getItem(position), convertView, parent);
         return convertView;

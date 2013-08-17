@@ -37,7 +37,7 @@ public class PlayerClassListActivity extends ListActivity implements PlayerClass
             List<PlayerClass> playerClasses = this.playerClassService.getAll();
 
             ListView listView = (ListView) findViewById(android.R.id.list);
-            PlayerClassAdapter adapter = new PlayerClassAdapter(this, R.layout.player_class_list_item);
+            PlayerClassAdapter adapter = new PlayerClassAdapter(this);
             playerClasses.add(PlayerClassCreator.create(-1L, getResources().getString(R.string.playerClass_list_create)));
             adapter.updateEntities(playerClasses);
             listView.setAdapter(adapter);
@@ -52,7 +52,7 @@ public class PlayerClassListActivity extends ListActivity implements PlayerClass
         super.onDestroy();
     }
 
-    private void logError(Exception e) {
+    private static void logError(Exception e) {
         if (BuildConfig.DEBUG) {
             Log.e(TAG, e.getClass().getCanonicalName() + "::" + e.getMessage());
         }

@@ -50,7 +50,7 @@ public class ReflectionUtils {
         try {
             return theClass.getDeclaredField(fieldName);
         } catch (NoSuchFieldException e) {
-            Class superClass = theClass.getSuperclass();
+            Class<?> superClass = theClass.getSuperclass();
             if (superClass == null) {
                 // TODO: Better handle?
                 throw new RuntimeException(e);

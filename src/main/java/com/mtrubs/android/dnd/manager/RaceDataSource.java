@@ -29,6 +29,7 @@ public class RaceDataSource extends AbstractEntityManager<Race> implements RaceM
         super(context, TABLE, COLUMN_ID, COLUMN_NAME);
     }
 
+    @Override
     protected String[] getSelect() {
         return new String[]{COLUMN_ID, COLUMN_NAME};
     }

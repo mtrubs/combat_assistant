@@ -10,6 +10,9 @@ import android.view.View;
  */
 public class ViewHolder {
 
+    private ViewHolder() {
+    }
+
     public static <T extends View> T get(View view, int id) {
         // noinspection unchecked
         SparseArray<View> viewHolder = (SparseArray<View>) view.getTag();

@@ -10,7 +10,6 @@ import com.mtrubs.util.ReflectionUtils;
 import com.mtrubs.util.StringUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,7 +27,7 @@ public abstract class AbstractEntityManager<T extends Entity> implements EntityM
     private final String idColumn;
     private final String nameColumn;
 
-    public AbstractEntityManager(Context context, String databaseTable, String idColumn, String nameColumn) {
+    protected AbstractEntityManager(Context context, String databaseTable, String idColumn, String nameColumn) {
         this.databaseManager = new DatabaseManager(context);
         this.databaseTable = databaseTable;
         this.idColumn = idColumn;
@@ -138,6 +137,7 @@ public abstract class AbstractEntityManager<T extends Entity> implements EntityM
         }
     }
 
+    @Override
     public boolean existsByName(String name) {
         // TODO: if name is null?
         SQLiteDatabase database = getReadableDatabase();
@@ -160,6 +160,7 @@ public abstract class AbstractEntityManager<T extends Entity> implements EntityM
         return result;
     }
 
+    @Override
     public void close() {
         this.databaseManager.close();
     }

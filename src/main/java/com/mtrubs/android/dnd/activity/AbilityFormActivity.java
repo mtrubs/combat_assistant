@@ -100,7 +100,7 @@ public class AbilityFormActivity extends Activity implements PlayerClassForm {
         super.onDestroy();
     }
 
-    private void logError(Exception e) {
+    private static void logError(Exception e) {
         if (BuildConfig.DEBUG) {
             Log.e(TAG, e.getClass().getCanonicalName() + "::" + e.getMessage());
         }

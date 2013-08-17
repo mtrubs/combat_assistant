@@ -141,7 +141,7 @@ public class PlayerClassFormActivity extends Activity implements PlayerClassForm
         confirmation.show();
     }
 
-    private void logError(Exception e) {
+    private static void logError(Exception e) {
         if (BuildConfig.DEBUG) {
             Log.e(TAG, e.getClass().getCanonicalName() + "::" + e.getMessage());
         }
@@ -163,6 +163,6 @@ public class PlayerClassFormActivity extends Activity implements PlayerClassForm
 
     @Override
     public void onAbilityItemClick(ListView l, View v, int position, long id) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        // TODO: implement
     }
 }

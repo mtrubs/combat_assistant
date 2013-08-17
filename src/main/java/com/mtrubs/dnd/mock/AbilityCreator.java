@@ -16,9 +16,9 @@ import java.util.List;
  */
 public class AbilityCreator {
 
-    private static List<Ability> ALL;
+    private static final List<Ability> ALL;
 
-    private static Comparator<Ability> COMPARATOR = new Comparator<Ability>() {
+    private static final Comparator<Ability> COMPARATOR = new Comparator<Ability>() {
         @Override
         public int compare(Ability a, Ability b) {
             return a.getName().compareTo(b.getName());

@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class PlayerClassCreator {
 
-    private static List<PlayerClass> ALL;
+    private static final List<PlayerClass> ALL;
 
-    private static Comparator<PlayerClass> COMPARATOR = new Comparator<PlayerClass>() {
+    private static final Comparator<PlayerClass> COMPARATOR = new Comparator<PlayerClass>() {
         @Override
         public int compare(PlayerClass a, PlayerClass b) {
             return a.getName().compareTo(b.getName());
@@ -53,6 +53,9 @@ public class PlayerClassCreator {
         ALL.add(create(22L, "Seeker"));
 
         Collections.sort(ALL, COMPARATOR);
+    }
+
+    private PlayerClassCreator() {
     }
 
     public static List<PlayerClass> getAll() {
