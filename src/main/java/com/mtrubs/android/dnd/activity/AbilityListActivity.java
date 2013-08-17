@@ -66,4 +66,11 @@ public class AbilityListActivity extends Activity implements AbilityListListener
         intent.putExtra(AbilityFormActivity.MESSAGE_ID, id);
         startActivity(intent);
     }
+
+    @SuppressWarnings("RefusedBequest")
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, EditMenuActivity.class);
+        startActivity(intent);
+    }
 }

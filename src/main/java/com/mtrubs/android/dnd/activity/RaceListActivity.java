@@ -68,4 +68,11 @@ public class RaceListActivity extends ListActivity {
         intent.putExtra(RaceFormActivity.MESSAGE_ID, id);
         startActivity(intent);
     }
+
+    @SuppressWarnings("RefusedBequest")
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, EditMenuActivity.class);
+        startActivity(intent);
+    }
 }
