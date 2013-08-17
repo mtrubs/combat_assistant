@@ -98,13 +98,14 @@ public class RaceFormActivity extends Activity implements RaceForm, AbilityListL
         TextView nameElement = (TextView) findViewById(R.id.race_name);
         String name = nameElement.getText().toString();
 
-        Race race = new Race();
-        ReflectionUtils.setProperty(race, "name", name);
-
         try {
             if (isEdit()) {
+                Race race = this.raceService.get(this.raceId);
+                ReflectionUtils.setProperty(race, "name", name);
                 this.raceService.update(race);
             } else {
+                Race race = new Race();
+                ReflectionUtils.setProperty(race, "name", name);
                 this.raceService.add(race);
             }
 

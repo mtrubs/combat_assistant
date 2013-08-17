@@ -92,13 +92,14 @@ public class PlayerClassFormActivity extends Activity implements PlayerClassForm
         TextView nameElement = (TextView) findViewById(R.id.playerClass_name);
         String name = nameElement.getText().toString();
 
-        PlayerClass playerClass = new PlayerClass();
-        ReflectionUtils.setProperty(playerClass, "name", name);
-
         try {
             if (isEdit()) {
+                PlayerClass playerClass = this.playerClassService.get(this.playerClassId);
+                ReflectionUtils.setProperty(playerClass, "name", name);
                 this.playerClassService.update(playerClass);
             } else {
+                PlayerClass playerClass = new PlayerClass();
+                ReflectionUtils.setProperty(playerClass, "name", name);
                 this.playerClassService.add(playerClass);
             }
 

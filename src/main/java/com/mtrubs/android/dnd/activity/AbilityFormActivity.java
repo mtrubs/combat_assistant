@@ -121,14 +121,16 @@ public class AbilityFormActivity extends Activity implements PlayerClassForm {
         Spinner typeElement = (Spinner) findViewById(R.id.ability_type);
         AbilityType type = ABILITY_TYPES[typeElement.getSelectedItemPosition()];
 
-        Ability ability = new Ability();
-        ReflectionUtils.setProperty(ability, "name", name);
-        ReflectionUtils.setProperty(ability, "type", type);
-
         try {
             if (isEdit()) {
+                Ability ability = this.abilityService.get(this.abilityId);
+                ReflectionUtils.setProperty(ability, "name", name);
+                ReflectionUtils.setProperty(ability, "type", type);
                 this.abilityService.update(ability);
             } else {
+                Ability ability = new Ability();
+                ReflectionUtils.setProperty(ability, "name", name);
+                ReflectionUtils.setProperty(ability, "type", type);
                 this.abilityService.add(ability);
             }
 
