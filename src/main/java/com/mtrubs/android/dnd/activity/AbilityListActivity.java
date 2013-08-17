@@ -1,6 +1,7 @@
 package com.mtrubs.android.dnd.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +15,6 @@ import com.mtrubs.dnd.domain.Ability;
 import com.mtrubs.dnd.mock.AbilityCreator;
 import com.mtrubs.dnd.service.AbilityService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -60,6 +60,8 @@ public class AbilityListActivity extends Activity implements AbilityListListener
 
     @Override
     public void onAbilityItemClick(ListView l, View v, int position, long id) {
-        // TODO: Form Activity
+        Intent intent = new Intent(this, AbilityFormActivity.class);
+        intent.putExtra(AbilityFormActivity.MESSAGE_ID, id);
+        startActivity(intent);
     }
 }

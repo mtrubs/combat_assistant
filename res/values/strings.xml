@@ -11,6 +11,10 @@
     <string name="no">No</string>
 
     <!-- Ability -->
+    <string name="ability_form_delete_message">Are you sure you want to delete this ability?</string>
+    <string name="ability_form_delete_title">Confirm Delete</string>
+    <string name="ability_form_name">Name:</string>
+    <string name="ability_form_name_hint">Ability Name</string>
     <string name="ability_list">Abilities</string>
     <string name="ability_list_assign">-- Assign Ability --</string>
     <string name="ability_list_create">-- Add New Ability --</string>

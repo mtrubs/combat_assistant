@@ -20,6 +20,12 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.mtrubs.android.dnd.activity.EditMenuActivity"/>
         </activity>
+        <activity
+                android:name="com.mtrubs.android.dnd.activity.AbilityFormActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.mtrubs.android.dnd.activity.AbilityListActivity"/>
+        </activity>
         <!-- Player Class -->
         <activity
                 android:name="com.mtrubs.android.dnd.activity.PlayerClassListActivity">
