@@ -15,9 +15,19 @@
     <string name="ability_form_delete_title">Confirm Delete</string>
     <string name="ability_form_name">Name:</string>
     <string name="ability_form_name_hint">Ability Name</string>
+    <string name="ability_form_title">Ability</string>
+    <string name="ability_form_type">Type:</string>
     <string name="ability_list">Abilities</string>
     <string name="ability_list_assign">-- Assign Ability --</string>
     <string name="ability_list_create">-- Add New Ability --</string>
+
+    <!-- Ability Type -->
+    <string name="ability_type_atWill">At Will</string>
+    <string name="ability_type_atWill_feature">At Will (F)</string>
+    <string name="ability_type_encounter">Encounter</string>
+    <string name="ability_type_encounter_feature">Encounter (F)</string>
+    <string name="ability_type_daily">Daily</string>
+    <string name="ability_type_daily_feature">Daily (F)</string>
 
     <!-- Player Class -->
     <string name="playerClass_form">Class Form</string>
@@ -25,6 +35,7 @@
     <string name="playerClass_form_delete_title">Confirm Delete</string>
     <string name="playerClass_form_name">Name:</string>
     <string name="playerClass_form_name_hint">Class Name</string>
+    <string name="playerClass_form_title">Class</string>
     <string name="playerClass_list">Classes</string>
     <string name="playerClass_list_create">-- Add New Class --</string>
 

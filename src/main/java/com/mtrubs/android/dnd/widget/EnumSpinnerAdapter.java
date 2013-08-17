@@ -5,46 +5,40 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import com.mtrubs.dnd.domain.Entity;
-
-import java.util.Collections;
-import java.util.List;
+import android.widget.SpinnerAdapter;
 
 /**
  * User: Matthew
- * Date: 8/10/13
- * Time: 8:46 AM
+ * Date: 8/17/13
+ * Time: 8:54 AM
  */
-public abstract class EntityListAdaptor<T extends Entity> extends BaseAdapter {
+public abstract class EnumSpinnerAdapter<T extends Enum<T>> extends BaseAdapter implements SpinnerAdapter {
 
     private final Context context;
     private final int resource;
+    private final T[] items;
+    private final int[] resourceIds;
 
-    private List<T> entities = Collections.emptyList();
-
-    public EntityListAdaptor(Context context, int resource) {
+    public EnumSpinnerAdapter(Context context, int resource, T[] items, int[] resourceIds) {
         this.context = context;
         this.resource = resource;
-    }
-
-    public void updateEntities(List<T> entities) {
-        this.entities = entities;
-        notifyDataSetChanged();
+        this.items = items;
+        this.resourceIds = resourceIds;
     }
 
     @Override
     public int getCount() {
-        return this.entities.size();
+        return this.items.length;
     }
 
     @Override
     public T getItem(int position) {
-        return this.entities.get(position);
+        return items[position];
     }
 
     @Override
     public long getItemId(int position) {
-        return getItem(position).getId();
+        return getItem(position).ordinal();
     }
 
     @Override
@@ -52,9 +46,13 @@ public abstract class EntityListAdaptor<T extends Entity> extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(this.resource, parent, false);
         }
-        createView(getItem(position), convertView, parent);
+        createView(position, convertView, parent);
         return convertView;
     }
 
-    protected abstract void createView(T entity, View convertView, ViewGroup parent);
+    protected String getItemResource(int position) {
+        return this.context.getResources().getString(this.resourceIds[position]);
+    }
+
+    protected abstract void createView(int position, View convertView, ViewGroup parent);
 }

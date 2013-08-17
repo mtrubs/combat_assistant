@@ -21,7 +21,7 @@ public class AbilityAdapter extends EntityListAdaptor<Ability> {
 
     @Override
     protected void createView(Ability entity, View convertView, ViewGroup parent) {
-        TextView name = ViewHolder.get(convertView, R.id.playerClass_name);
+        TextView name = ViewHolder.get(convertView, R.id.ability_name);
         name.setText(entity.getName());
     }
 }

@@ -6,6 +6,21 @@
               android:orientation="vertical"
               android:padding="12dp">
 
+    <TextView
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="@string/ability_form_title"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="2dp"/>
+
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dip"
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="12dp"/>
+
     <TableLayout
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
@@ -16,9 +31,10 @@
                 android:layout_height="fill_parent">
 
             <TextView
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
                     android:layout_width="wrap_content"
                     android:text="@string/ability_form_name"
+                    android:gravity="center_vertical"
                     android:textSize="25sp"
                     android:paddingRight="12dp"/>
 
@@ -29,6 +45,25 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/ability_form_name_hint"
                     android:textSize="25sp"/>
+        </TableRow>
+
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+            <TextView
+                    android:layout_height="fill_parent"
+                    android:layout_width="wrap_content"
+                    android:text="@string/ability_form_type"
+                    android:gravity="center_vertical"
+                    android:textSize="25sp"
+                    android:paddingRight="12dp"/>
+
+            <Spinner
+                    android:layout_weight="1"
+                    android:id="@+id/ability_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
         </TableRow>
 
     </TableLayout>

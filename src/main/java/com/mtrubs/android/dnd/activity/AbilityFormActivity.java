@@ -7,15 +7,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import com.mtrubs.android.dnd.BuildConfig;
 import com.mtrubs.android.dnd.R;
 import com.mtrubs.android.dnd.service.AbilityDataSourceService;
+import com.mtrubs.android.dnd.view.ViewHolder;
+import com.mtrubs.android.dnd.widget.EnumSpinnerAdapter;
 import com.mtrubs.dnd.domain.Ability;
+import com.mtrubs.dnd.domain.AbilityType;
 import com.mtrubs.dnd.service.AbilityService;
 import com.mtrubs.dnd.service.exception.DuplicateEntityException;
 import com.mtrubs.dnd.service.exception.InvalidNameException;
 import com.mtrubs.dnd.service.exception.ValidationException;
+import com.mtrubs.util.ArrayUtils;
 import com.mtrubs.util.ReflectionUtils;
 
 /**
@@ -32,6 +38,27 @@ public class AbilityFormActivity extends Activity implements PlayerClassForm {
     private long abilityId;
     private AbilityService abilityService;
 
+    private static final AbilityType[] ABILITY_TYPES;
+    private static final int[] ABILITY_TYPE_RESOURCES;
+
+    static {
+        ABILITY_TYPES = new AbilityType[3];
+        ABILITY_TYPE_RESOURCES = new int[3];
+
+        // TODO: what to do with the Feature types?
+        addAbility(0, AbilityType.AtWill, R.string.ability_type_atWill);
+        //addAbility(3, AbilityType.AtWillFeature, R.string.ability_type_atWill_feature);
+        addAbility(1, AbilityType.Encounter, R.string.ability_type_encounter);
+        //addAbility(4, AbilityType.EncounterFeature, R.string.ability_type_encounter_feature);
+        addAbility(2, AbilityType.Daily, R.string.ability_type_daily);
+        //addAbility(5, AbilityType.DailyFeature, R.string.ability_type_daily_feature);
+    }
+
+    private static void addAbility(int index, AbilityType type, int resourceId) {
+        ABILITY_TYPES[index] = type;
+        ABILITY_TYPE_RESOURCES[index] = resourceId;
+    }
+
     @Override
     public void onCreate(Bundle savedInstance) {
         try {
@@ -39,6 +66,15 @@ public class AbilityFormActivity extends Activity implements PlayerClassForm {
             setContentView(R.layout.ability_form);
 
             this.abilityService = new AbilityDataSourceService(this);
+            Spinner typeElement = (Spinner) findViewById(R.id.ability_type);
+            typeElement.setAdapter(new EnumSpinnerAdapter<AbilityType>(this, R.layout.ability_type_list_item, ABILITY_TYPES, ABILITY_TYPE_RESOURCES) {
+
+                @Override
+                protected void createView(int position, View convertView, ViewGroup parent) {
+                    TextView name = ViewHolder.get(convertView, R.id.ability_name);
+                    name.setText(getItemResource(position));
+                }
+            });
 
             // check if this is an edit vs create
             this.abilityId = getIntent().getLongExtra(MESSAGE_ID, -1L);
@@ -47,6 +83,7 @@ public class AbilityFormActivity extends Activity implements PlayerClassForm {
                 Ability ability = this.abilityService.get(this.abilityId);
                 TextView nameElement = (TextView) findViewById(R.id.ability_name);
                 nameElement.setText(ability.getName());
+                typeElement.setSelection(ArrayUtils.indexOf(ABILITY_TYPES, ability.getType()));
             } else {
                 // cannot delete the item if we are in create mode
                 View view = findViewById(R.id.delete);
@@ -78,8 +115,12 @@ public class AbilityFormActivity extends Activity implements PlayerClassForm {
         TextView nameElement = (TextView) findViewById(R.id.ability_name);
         String name = nameElement.getText().toString();
 
+        Spinner typeElement = (Spinner) findViewById(R.id.ability_type);
+        AbilityType type = ABILITY_TYPES[typeElement.getSelectedItemPosition()];
+
         Ability ability = new Ability();
         ReflectionUtils.setProperty(ability, "name", name);
+        ReflectionUtils.setProperty(ability, "type", type);
 
         try {
             if (isEdit()) {

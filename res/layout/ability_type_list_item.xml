@@ -8,8 +8,8 @@
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:padding="5dp"
-            android:paddingLeft="15dp"
             android:textSize="25sp"
-            android:id="@+id/playerClass_name"/>
+            android:gravity="left"
+            android:id="@+id/ability_name"/>
+
 </LinearLayout>
