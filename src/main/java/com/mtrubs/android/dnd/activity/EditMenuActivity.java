@@ -35,7 +35,8 @@ public class EditMenuActivity extends Activity implements EditMenu {
 
     @Override
     public void launchAbilityList(View view) {
-        // TODO: Activity
+        Intent intent = new Intent(this, AbilityListActivity.class);
+        startActivity(intent);
     }
 
     @Override

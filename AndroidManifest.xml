@@ -13,6 +13,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <!-- Ability -->
+        <activity
+                android:name="com.mtrubs.android.dnd.activity.AbilityListActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.mtrubs.android.dnd.activity.EditMenuActivity"/>
+        </activity>
+        <!-- Player Class -->
         <activity
                 android:name="com.mtrubs.android.dnd.activity.PlayerClassListActivity">
             <meta-data
@@ -25,5 +33,6 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.mtrubs.android.dnd.activity.PlayerClassListActivity"/>
         </activity>
+        <!-- Race -->
     </application>
 </manifest>

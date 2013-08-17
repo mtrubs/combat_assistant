@@ -75,6 +75,13 @@ public class PlayerClassFormActivity extends Activity implements PlayerClassForm
     }
 
     @Override
+    public void onDestroy() {
+        this.playerClassService = null;
+        this.abilityService = null;
+        super.onDestroy();
+    }
+
+    @Override
     public void save(View view) {
         TextView nameElement = (TextView) findViewById(R.id.playerClass_name);
         String name = nameElement.getText().toString();

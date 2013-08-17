@@ -47,6 +47,12 @@ public class PlayerClassListActivity extends ListActivity implements PlayerClass
         }
     }
 
+    @Override
+    public void onDestroy() {
+        this.playerClassService = null;
+        super.onDestroy();
+    }
+
     private void logError(Exception e) {
         if (BuildConfig.DEBUG) {
             Log.e(TAG, e.getClass().getCanonicalName() + "::" + e.getMessage());

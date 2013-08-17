@@ -13,6 +13,7 @@
     <!-- Ability -->
     <string name="ability_list">Abilities</string>
     <string name="ability_list_assign">-- Assign Ability --</string>
+    <string name="ability_list_create">-- Add New Ability --</string>
 
     <!-- Player Class -->
     <string name="playerClass_form">Class Form</string>
