@@ -3,6 +3,8 @@ package com.mtrubs.android.dnd.manager;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import com.mtrubs.android.dnd.BuildConfig;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,6 +38,22 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO: when needed
+        // TODO: better handle when needed
+        if (BuildConfig.DEBUG) {
+            Log.w(DatabaseManager.class.getName(),
+                    "Upgrading database from version " + oldVersion + " to "
+                            + newVersion + ", which will destroy all old data");
+        }
+
+        Collection<String> statements = new ArrayList<String>();
+
+        statements.add(RaceDataSource.getDropStatement());
+        statements.add(PlayerClassDataSource.getDropStatement());
+        statements.add(AbilityDataSource.getDropStatement());
+
+        for (String statement : statements) {
+            db.execSQL(statement);
+        }
+        onCreate(db);
     }
 }

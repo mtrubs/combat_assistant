@@ -38,7 +38,7 @@ public class AbilityListActivity extends Activity implements AbilityListListener
 
             AbilityList abilityList = (AbilityList) getFragmentManager().findFragmentById(R.id.ability_list);
 
-            List<Ability> abilities = AbilityCreator.getAll(); // TODO: this.abilityService.getAll();
+            List<Ability> abilities = this.abilityService.getAll();
             abilities.add(abilityList.createPlaceholder(getResources().getString(R.string.ability_list_create)));
             abilityList.updateAbilities(abilities);
         } catch (Exception e) {

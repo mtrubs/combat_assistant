@@ -23,6 +23,7 @@ public class RaceDataSource extends AbstractEntityManager<Race> implements RaceM
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_NAME + " TEXT NOT NULL" +
                     ")";
+    private static final String DROP_STATEMENT = "DROP TABLE IF EXISTS " + TABLE;
 
     public RaceDataSource(Context context) {
         super(context, TABLE, COLUMN_ID, COLUMN_NAME);
@@ -49,7 +50,11 @@ public class RaceDataSource extends AbstractEntityManager<Race> implements RaceM
         return entity;
     }
 
-    public static String getCreateStatement() {
+    protected static String getCreateStatement() {
         return CREATE_STATEMENT;
+    }
+
+    protected static String getDropStatement() {
+        return DROP_STATEMENT;
     }
 }

@@ -27,6 +27,7 @@ public class AbilityDataSource extends AbstractEntityManager<Ability> implements
                     COLUMN_NAME + " TEXT NOT NULL, " +
                     COLUMN_TYPE + " TEXT NOT NULL" +
                     ")";
+    private static final String DROP_STATEMENT = "DROP TABLE IF EXISTS " + TABLE;
 
     public AbilityDataSource(Context context) {
         super(context, TABLE, COLUMN_ID, COLUMN_NAME);
@@ -58,7 +59,11 @@ public class AbilityDataSource extends AbstractEntityManager<Ability> implements
         return entity;
     }
 
-    public static String getCreateStatement() {
+    protected static String getCreateStatement() {
         return CREATE_STATEMENT;
+    }
+
+    protected static String getDropStatement() {
+        return DROP_STATEMENT;
     }
 }

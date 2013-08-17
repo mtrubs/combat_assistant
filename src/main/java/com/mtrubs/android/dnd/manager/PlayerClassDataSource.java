@@ -23,6 +23,7 @@ public class PlayerClassDataSource extends AbstractEntityManager<PlayerClass> im
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_NAME + " TEXT NOT NULL" +
                     ")";
+    private static final String DROP_STATEMENT = "DROP TABLE IF EXISTS " + TABLE;
 
     public PlayerClassDataSource(Context context) {
         super(context, TABLE, COLUMN_ID, COLUMN_NAME);
@@ -50,7 +51,11 @@ public class PlayerClassDataSource extends AbstractEntityManager<PlayerClass> im
         return entity;
     }
 
-    public static String getCreateStatement() {
+    protected static String getCreateStatement() {
         return CREATE_STATEMENT;
+    }
+
+    protected static String getDropStatement() {
+        return DROP_STATEMENT;
     }
 }

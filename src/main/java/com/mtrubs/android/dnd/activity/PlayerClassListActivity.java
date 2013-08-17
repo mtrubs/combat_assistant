@@ -23,8 +23,6 @@ import java.util.List;
  */
 public class PlayerClassListActivity extends ListActivity implements PlayerClassList {
 
-    // TODO: database
-    private List<PlayerClass> playerClasses = PlayerClassCreator.getAll();
     private PlayerClassService playerClassService;
 
     private static final String TAG = PlayerClassListActivity.class.getCanonicalName();
@@ -36,11 +34,12 @@ public class PlayerClassListActivity extends ListActivity implements PlayerClass
             setContentView(R.layout.player_class_list);
 
             this.playerClassService = new PlayerClassDataSourceService(this);
+            List<PlayerClass> playerClasses = this.playerClassService.getAll();
 
             ListView listView = (ListView) findViewById(android.R.id.list);
             PlayerClassAdapter adapter = new PlayerClassAdapter(this, R.layout.player_class_list_item);
-            this.playerClasses.add(PlayerClassCreator.create(-1L, getResources().getString(R.string.playerClass_list_create)));
-            adapter.updateEntities(this.playerClasses);
+            playerClasses.add(PlayerClassCreator.create(-1L, getResources().getString(R.string.playerClass_list_create)));
+            adapter.updateEntities(playerClasses);
             listView.setAdapter(adapter);
         } catch (Exception e) {
             logError(e);

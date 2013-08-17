@@ -59,12 +59,11 @@ public abstract class AbstractEntityManager<T extends Entity> implements EntityM
     @Override
     public List<T> getAll() {
         SQLiteDatabase database = getReadableDatabase();
-        List<T> results = Collections.emptyList();
+        List<T> results = new ArrayList<T>();
         Cursor cursor = null;
         try {
             cursor = database.query(this.databaseTable, getSelect(), null, null, null, null, null);
             if (cursor != null && cursor.moveToFirst()) {
-                results = new ArrayList<T>(cursor.getCount());
                 do {
                     results.add(fromCursor(cursor));
                 } while (cursor.moveToNext());
