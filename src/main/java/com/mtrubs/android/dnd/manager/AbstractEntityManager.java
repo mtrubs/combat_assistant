@@ -9,6 +9,10 @@ import com.mtrubs.dnd.manager.EntityManager;
 import com.mtrubs.util.ReflectionUtils;
 import com.mtrubs.util.StringUtils;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * User: Matthew
  * Date: 8/4/13
@@ -50,6 +54,28 @@ public abstract class AbstractEntityManager<T extends Entity> implements EntityM
 
     protected void setProperty(T entity, String fieldName, Object value) {
         ReflectionUtils.setProperty(entity, fieldName, value);
+    }
+
+    @Override
+    public List<T> getAll() {
+        SQLiteDatabase database = getReadableDatabase();
+        List<T> results = Collections.emptyList();
+        Cursor cursor = null;
+        try {
+            cursor = database.query(this.databaseTable, getSelect(), null, null, null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                results = new ArrayList<T>(cursor.getCount());
+                do {
+                    results.add(fromCursor(cursor));
+                } while (cursor.moveToNext());
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            database.close();
+        }
+        return results;
     }
 
     @Override

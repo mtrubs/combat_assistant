@@ -5,12 +5,15 @@ import android.content.Context;
 import com.mtrubs.dnd.domain.Race;
 import com.mtrubs.test.IntegrationTest;
 import com.mtrubs.util.ReflectionUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.junit.Assume.assumeTrue;
@@ -30,6 +33,11 @@ public class RaceDataSourceTest {
     public void create() {
         Context c = Robolectric.buildActivity(Activity.class).get();
         this.dataSource = new RaceDataSource(c);
+    }
+
+    @After
+    public void destroy() {
+        this.dataSource.close();
     }
 
     @Test
@@ -66,9 +74,25 @@ public class RaceDataSourceTest {
         Race entity1 = add("Human");
         Race entity2 = add("Dwarf");
 
-        assertRace(entity1.getId(), entity1.getName(), this.dataSource.get(entity1.getId()));
-        assertRace(entity2.getId(), entity2.getName(), this.dataSource.get(entity2.getId()));
+        assertEntity(entity1, this.dataSource.get(entity1.getId()));
+        assertEntity(entity2, this.dataSource.get(entity2.getId()));
         assertNull(this.dataSource.get(entity2.getId() + 1L)); // non-existent
+    }
+
+    @Test
+    public void getAll() {
+        List<Race> all = this.dataSource.getAll();
+        assertNotNull(all);
+        assertEquals(0, all.size());
+
+        Race entity1 = add("Human");
+        Race entity2 = add("Dwarf");
+
+        all = this.dataSource.getAll();
+        assertNotNull(all);
+        assertEquals(2, all.size());
+        assertEntity(entity1, all.get(0));
+        assertEntity(entity2, all.get(1));
     }
 
     @Test
@@ -78,25 +102,37 @@ public class RaceDataSourceTest {
         Race entity3 = create("Gnome");
         setId(entity3, entity2.getId() + 1L); // non-existent
 
-        assertRace(entity1.getId(), entity1.getName(), this.dataSource.get(entity1.getId()));
-        assertRace(entity2.getId(), entity2.getName(), this.dataSource.get(entity2.getId()));
+        assertEntity(entity1, this.dataSource.get(entity1.getId()));
+        assertEntity(entity2, this.dataSource.get(entity2.getId()));
         assertNull(this.dataSource.get(entity3.getId())); // non-existent
 
         setName(entity1, entity1.getName() + "_MOD");
         this.dataSource.update(entity1);
 
-        assertRace(entity1.getId(), entity1.getName(), this.dataSource.get(entity1.getId()));
-        assertRace(entity2.getId(), entity2.getName(), this.dataSource.get(entity2.getId()));
+        assertEntity(entity1, this.dataSource.get(entity1.getId()));
+        assertEntity(entity2, this.dataSource.get(entity2.getId()));
         assertNull(this.dataSource.get(entity3.getId())); // non-existent
 
         this.dataSource.update(entity3);
 
-        assertRace(entity1.getId(), entity1.getName(), this.dataSource.get(entity1.getId()));
-        assertRace(entity2.getId(), entity2.getName(), this.dataSource.get(entity2.getId()));
+        assertEntity(entity1, this.dataSource.get(entity1.getId()));
+        assertEntity(entity2, this.dataSource.get(entity2.getId()));
         assertNull(this.dataSource.get(entity3.getId())); // non-existent
     }
 
-    private static void assertRace(long expectedId, String expectedName, Race actual) {
+    private static void assertEntity(Race expected, Race actual) {
+        if (expected == null) {
+            assertNull(actual);
+        } else {
+            assertEntity(
+                    expected.getId(),
+                    expected.getName(),
+                    actual
+            );
+        }
+    }
+
+    private static void assertEntity(long expectedId, String expectedName, Race actual) {
         assertNotNull(actual);
         assertEquals(expectedId, actual.getId());
         assertEquals(expectedName, actual.getName());

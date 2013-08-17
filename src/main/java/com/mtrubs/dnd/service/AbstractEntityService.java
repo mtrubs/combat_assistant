@@ -4,6 +4,8 @@ import com.mtrubs.dnd.domain.Entity;
 import com.mtrubs.dnd.manager.EntityManager;
 import com.mtrubs.dnd.service.exception.ValidationException;
 
+import java.util.List;
+
 /**
  * User: Matthew
  * Date: 8/11/13
@@ -25,6 +27,11 @@ public class AbstractEntityService<T extends Entity> implements EntityService<T>
     @Override
     public T get(long id) {
         return this.dataSource.get(id);
+    }
+
+    @Override
+    public List<T> getAll() {
+        return this.dataSource.getAll();
     }
 
     @Override

@@ -6,12 +6,15 @@ import com.mtrubs.dnd.domain.Ability;
 import com.mtrubs.dnd.domain.AbilityType;
 import com.mtrubs.test.IntegrationTest;
 import com.mtrubs.util.ReflectionUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.junit.Assume.assumeTrue;
@@ -31,6 +34,11 @@ public class AbilityDataSourceTest {
     public void create() {
         Context c = Robolectric.buildActivity(Activity.class).get();
         this.dataSource = new AbilityDataSource(c);
+    }
+
+    @After
+    public void destroy() {
+        this.dataSource.close();
     }
 
     @Test
@@ -67,9 +75,25 @@ public class AbilityDataSourceTest {
         Ability entity1 = add("Lance of Faith", AbilityType.AtWill);
         Ability entity2 = add("Divine Glow", AbilityType.Encounter);
 
-        assertAbility(entity1.getId(), entity1.getName(), entity1.getType(), this.dataSource.get(entity1.getId()));
-        assertAbility(entity2.getId(), entity2.getName(), entity2.getType(), this.dataSource.get(entity2.getId()));
+        assertEntity(entity1, this.dataSource.get(entity1.getId()));
+        assertEntity(entity2, this.dataSource.get(entity2.getId()));
         assertNull(this.dataSource.get(entity2.getId() + 1L)); // non-existent
+    }
+
+    @Test
+    public void getAll() {
+        List<Ability> all = this.dataSource.getAll();
+        assertNotNull(all);
+        assertEquals(0, all.size());
+
+        Ability entity1 = add("Lance of Faith", AbilityType.AtWill);
+        Ability entity2 = add("Divine Glow", AbilityType.Encounter);
+
+        all = this.dataSource.getAll();
+        assertNotNull(all);
+        assertEquals(2, all.size());
+        assertEntity(entity1, all.get(0));
+        assertEntity(entity2, all.get(1));
     }
 
     @Test
@@ -79,22 +103,22 @@ public class AbilityDataSourceTest {
         Ability entity3 = create("Avenging Flame", AbilityType.Daily);
         setId(entity3, entity2.getId() + 1L); // non-existent
 
-        assertAbility(entity1.getId(), entity1.getName(), entity1.getType(), this.dataSource.get(entity1.getId()));
-        assertAbility(entity2.getId(), entity2.getName(), entity2.getType(), this.dataSource.get(entity2.getId()));
+        assertEntity(entity1, this.dataSource.get(entity1.getId()));
+        assertEntity(entity2, this.dataSource.get(entity2.getId()));
         assertNull(this.dataSource.get(entity3.getId())); // non-existent
 
         setName(entity1, entity1.getName() + "_MOD");
         setType(entity1, AbilityType.AtWillFeature);
         this.dataSource.update(entity1);
 
-        assertAbility(entity1.getId(), entity1.getName(), entity1.getType(), this.dataSource.get(entity1.getId()));
-        assertAbility(entity2.getId(), entity2.getName(), entity2.getType(), this.dataSource.get(entity2.getId()));
+        assertEntity(entity1, this.dataSource.get(entity1.getId()));
+        assertEntity(entity2, this.dataSource.get(entity2.getId()));
         assertNull(this.dataSource.get(entity3.getId())); // non-existent
 
         this.dataSource.update(entity3);
 
-        assertAbility(entity1.getId(), entity1.getName(), entity1.getType(), this.dataSource.get(entity1.getId()));
-        assertAbility(entity2.getId(), entity2.getName(), entity2.getType(), this.dataSource.get(entity2.getId()));
+        assertEntity(entity1, this.dataSource.get(entity1.getId()));
+        assertEntity(entity2, this.dataSource.get(entity2.getId()));
         assertNull(this.dataSource.get(entity3.getId())); // non-existent
     }
 
@@ -109,7 +133,20 @@ public class AbilityDataSourceTest {
         assertFalse(this.dataSource.existsByName("unknown"));
     }
 
-    private static void assertAbility(long expectedId, String expectedName, AbilityType expectedType, Ability actual) {
+    private static void assertEntity(Ability expected, Ability actual) {
+        if (expected == null) {
+            assertNull(actual);
+        } else {
+            assertEntity(
+                    expected.getId(),
+                    expected.getName(),
+                    expected.getType(),
+                    actual
+            );
+        }
+    }
+
+    private static void assertEntity(long expectedId, String expectedName, AbilityType expectedType, Ability actual) {
         assertNotNull(actual);
         assertEquals(expectedId, actual.getId());
         assertEquals(expectedName, actual.getName());

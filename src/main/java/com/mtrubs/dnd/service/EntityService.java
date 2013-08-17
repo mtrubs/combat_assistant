@@ -3,6 +3,8 @@ package com.mtrubs.dnd.service;
 import com.mtrubs.dnd.domain.Entity;
 import com.mtrubs.dnd.service.exception.ValidationException;
 
+import java.util.List;
+
 /**
  * User: Matthew
  * Date: 8/11/13
@@ -13,6 +15,8 @@ public interface EntityService<T extends Entity> {
     void add(T entity) throws ValidationException;
 
     T get(long id);
+
+    List<T> getAll();
 
     void delete(long id);
 
