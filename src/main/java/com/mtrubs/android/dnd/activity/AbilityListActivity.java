@@ -12,7 +12,6 @@ import com.mtrubs.android.dnd.fragment.AbilityList;
 import com.mtrubs.android.dnd.fragment.AbilityListListener;
 import com.mtrubs.android.dnd.service.AbilityDataSourceService;
 import com.mtrubs.dnd.domain.Ability;
-import com.mtrubs.dnd.mock.AbilityCreator;
 import com.mtrubs.dnd.service.AbilityService;
 
 import java.util.List;
@@ -48,7 +47,10 @@ public class AbilityListActivity extends Activity implements AbilityListListener
 
     @Override
     public void onDestroy() {
-        this.abilityService = null;
+        if (this.abilityService != null) {
+            this.abilityService.close();
+            this.abilityService = null;
+        }
         super.onDestroy();
     }
 

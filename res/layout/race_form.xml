@@ -10,11 +10,10 @@
             android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
-            android:text="@string/ability_form_title"
+            android:text="@string/race_form_title"
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_marginBottom="2dp"/>
-
     <View
             android:layout_width="fill_parent"
             android:layout_height="2dip"
@@ -31,42 +30,30 @@
                 android:layout_height="fill_parent">
 
             <TextView
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="@string/ability_form_name"
-                    android:gravity="center_vertical"
+                    android:text="@string/race_form_name"
                     android:textSize="25sp"
                     android:paddingRight="12dp"/>
 
             <EditText
-                    android:id="@+id/ability_name"
+                    android:id="@+id/race_name"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/ability_form_name_hint"
+                    android:hint="@string/race_form_name_hint"
                     android:textSize="25sp"/>
         </TableRow>
 
-        <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-
-            <TextView
-                    android:layout_height="fill_parent"
-                    android:layout_width="wrap_content"
-                    android:text="@string/ability_form_type"
-                    android:gravity="center_vertical"
-                    android:textSize="25sp"
-                    android:paddingRight="12dp"/>
-
-            <Spinner
-                    android:layout_weight="1"
-                    android:id="@+id/ability_type"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
-        </TableRow>
-
     </TableLayout>
+
+    <fragment
+            android:id="@+id/ability_list"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="12dp"
+            class="com.mtrubs.android.dnd.fragment.AbilityListFragment"/>
 
     <LinearLayout
             android:layout_height="wrap_content"

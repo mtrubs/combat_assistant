@@ -32,11 +32,11 @@ import com.mtrubs.util.ReflectionUtils;
 public class AbilityFormActivity extends Activity implements PlayerClassForm {
 
     public static final String MESSAGE_ID = "mtrubs_id";
-
     private static final String TAG = AbilityFormActivity.class.getCanonicalName();
 
-    private long abilityId;
     private AbilityService abilityService;
+
+    private long abilityId;
 
     private static final AbilityType[] ABILITY_TYPES;
     private static final int[] ABILITY_TYPE_RESOURCES;
@@ -96,7 +96,10 @@ public class AbilityFormActivity extends Activity implements PlayerClassForm {
 
     @Override
     public void onDestroy() {
-        this.abilityService = null;
+        if (this.abilityService != null) {
+            this.abilityService.close();
+            this.abilityService = null;
+        }
         super.onDestroy();
     }
 

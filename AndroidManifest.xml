@@ -40,5 +40,17 @@
                     android:value="com.mtrubs.android.dnd.activity.PlayerClassListActivity"/>
         </activity>
         <!-- Race -->
+        <activity
+                android:name="com.mtrubs.android.dnd.activity.RaceListActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.mtrubs.android.dnd.activity.EditMenuActivity"/>
+        </activity>
+        <activity
+                android:name="com.mtrubs.android.dnd.activity.RaceFormActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.mtrubs.android.dnd.activity.RaceListActivity"/>
+        </activity>
     </application>
 </manifest>

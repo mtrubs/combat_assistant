@@ -21,11 +21,11 @@ import java.util.List;
  * Date: 8/8/13
  * Time: 7:07 PM
  */
-public class PlayerClassListActivity extends ListActivity implements PlayerClassList {
-
-    private PlayerClassService playerClassService;
+public class PlayerClassListActivity extends ListActivity {
 
     private static final String TAG = PlayerClassListActivity.class.getCanonicalName();
+
+    private PlayerClassService playerClassService;
 
     @Override
     public void onCreate(Bundle savedInstance) {
@@ -48,7 +48,10 @@ public class PlayerClassListActivity extends ListActivity implements PlayerClass
 
     @Override
     public void onDestroy() {
-        this.playerClassService = null;
+        if (this.playerClassService != null) {
+            this.playerClassService.close();
+            this.playerClassService = null;
+        }
         super.onDestroy();
     }
 
