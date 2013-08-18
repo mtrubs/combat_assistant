@@ -37,7 +37,7 @@ public class RaceListActivity extends ListActivity {
     public void onCreate(Bundle savedInstance) {
         try {
             super.onCreate(savedInstance);
-            setContentView(R.layout.race_list);
+            setContentView(R.layout.entity_list);
 
             this.raceService = new RaceDataSourceService(this);
             List<Race> races = this.raceService.getAll();

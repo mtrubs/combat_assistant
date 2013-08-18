@@ -31,7 +31,7 @@ public class PlayerClassListActivity extends ListActivity {
     public void onCreate(Bundle savedInstance) {
         try {
             super.onCreate(savedInstance);
-            setContentView(R.layout.player_class_list);
+            setContentView(R.layout.entity_list);
 
             this.playerClassService = new PlayerClassDataSourceService(this);
             List<PlayerClass> playerClasses = this.playerClassService.getAll();
